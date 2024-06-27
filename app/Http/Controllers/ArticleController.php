@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function show($id)
     {
-        $article = Article::query()->findOrFail($id);
+        $article = Article::with('comments.user')->findOrFail($id);
 
         // todo we can make a better logic to get related articles
         $relatedArticles = Article::query()->where('id', '!=', $id)->take(5)->get();
