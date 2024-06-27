@@ -21,44 +21,53 @@ A small news website built using Laravel and Bootstrap, featuring a responsive d
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/NacirChahine/news-website.git
-cd news-website
+git clone https://github.com/NacirChahine/news-site.git
+cd news-site
 ```
 
 ### Step 2: Install Dependencies
+
 ```bash
 composer install
 npm install
 ```
 
 ### Step 3: Environment Configuration
+
 Copy the .env.example file to .env and update the necessary environment variables, such as database credentials.
 ```bash
 cp .env.example .env
 ```
 
 ### Step 4: Generate Application Key
+
 ```bash
 php artisan key:generate
 ```
 
 ### Step 5: Database Migration
-Ensure your MySQL server is running and the database specified in the .env file exists. Then run the following command to migrate the database:
 
+Ensure your MySQL server is running and the database specified in the .env file exists. Then run the following command to migrate the database:
 ```bash
 php artisan migrate
 ```
 
 ### Step 6: Database Seeding
+
 Populate the database with sample data:
 ```bash
 php artisan db:seed
 ```
 
 ### Step 7: Run the Application
+
 Start the development server:
 ```bash
 php artisan serve
+```
+In another terminal, run the JavaScript server:
+```bash
+npm run dev
 ```
 The application will be accessible at http://127.0.0.1:8000.
 
@@ -105,5 +114,5 @@ The backend is powered by Laravel, featuring:
 Three main controllers manage the functionality:
 
 - `HomeController` for the homepage
-- `ArticleController` for individual article pages, including AJAX for likes
+- `ArticleController` for individual article pages, including AJAX for likes and comments
 - `CommentController` for managing article comments
