@@ -9,8 +9,7 @@
                 <p>{{ $article->content }}</p>
                 <div>
                     <button id="like-button" class="btn btn-primary" @if($userHasLiked) disabled @endif>Like</button>
-{{--                    todo fix likes--}}
-                    <span id="like-count">{{ $article->likes }}</span> Likes
+                    <span id="like-count">{{ $likesCount }}</span> Likes
                 </div>
                 <div class="mt-3">
                     <p>Views: {{ $article->views }}</p>

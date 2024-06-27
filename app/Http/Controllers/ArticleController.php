@@ -16,10 +16,14 @@ class ArticleController extends Controller
         // Increment view count
         $article->increment('views');
 
+        // todo we can on like increment the likes count in the article instead of calculating each time
+        // Get total likes count
+        $likesCount = $article->likes()->count();
+
         // Check if user has liked this article
         $userHasLiked = auth()->check() ? $article->likes()->where('user_id', auth()->id())->exists() : false;
 
-        return view('article', compact('article', 'relatedArticles', 'userHasLiked'));
+        return view('article', compact('article', 'relatedArticles', 'userHasLiked', 'likesCount'));
     }
 
     public function like(Request $request, $id)
