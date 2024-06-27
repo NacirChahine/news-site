@@ -8,23 +8,27 @@
                 <img src="{{ $article->image }}" alt="{{ $article->title }}" class="img-fluid">
                 <p>{{ $article->content }}</p>
                 <div>
-                    <button id="like-button" class="btn btn-primary">Like</button>
+                    <button id="like-button" class="btn btn-primary" @if($userHasLiked) disabled @endif>Like</button>
+{{--                    todo fix likes--}}
                     <span id="like-count">{{ $article->likes }}</span> Likes
+                </div>
+                <div class="mt-3">
+                    <p>Views: {{ $article->views }}</p>
                 </div>
                 <hr>
                 <h4>Comments</h4>
                 @auth
-                    <form action="{{ route('comment.store', $article->id) }}" method="POST">
+                    <form id="comment-form" action="{{ route('comment.store', $article->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <textarea name="content" class="form-control" rows="3" required></textarea>
+                            <textarea id="comment-content" name="comment" class="form-control" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                        <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
                     </form>
                 @else
                     <p>Please <a href="{{ route('login') }}">login</a> to comment.</p>
                 @endauth
-                <div class="mt-4">
+                <div id="comments-section" class="mt-4">
                     @foreach($article->comments as $comment)
                         <div class="comment">
                             <strong>{{ $comment->user->username }}</strong>
@@ -63,8 +67,34 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('like-count').textContent = data.likes;
+                    document.getElementById('like-button').disabled = true;
+                });
+        });
+
+        document.getElementById('comment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let content = document.getElementById('comment-content').value;
+
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ content: content })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let commentHtml = `
+                        <div class="comment">
+                            <strong>{{ auth()->user()->username }}</strong>
+                            <p>${content}</p>
+                        </div>
+                        <hr>
+                    `;
+                    document.getElementById('comments-section').insertAdjacentHTML('beforeend', commentHtml);
+                    document.getElementById('comment-content').value = '';
                 });
         });
     </script>
 @endsection
-

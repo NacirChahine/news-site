@@ -10,15 +10,15 @@ class CommentController extends Controller
     public function store(Request $request, $article_id)
     {
         $request->validate([
-            'comment' => 'required|string'
+            'content' => 'required|string'
         ]);
 
-        Comment::query()->create([
+        $comment = Comment::create([
             'article_id' => $article_id,
             'user_id' => auth()->id(),
-            'content' => $request->comment,
+            'content' => $request->content,
         ]);
 
-        return back();
+        return response()->json($comment);
     }
 }
