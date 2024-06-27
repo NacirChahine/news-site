@@ -12,8 +12,9 @@
                     <span id="like-count">{{ $article->likes }}</span> Likes
                 </div>
                 <div>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank">Share on Facebook</a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}" target="_blank">Tweet</a>
+                    <span>Share on </span>
+                    <a href="https://x.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}" target="_blank">X</a>,
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank">Facebook</a>
                 </div>
             </div>
             <div class="col-md-4">
