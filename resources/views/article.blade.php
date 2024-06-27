@@ -86,7 +86,7 @@
                 .then(data => {
                     let commentHtml = `
                         <div class="comment">
-                            <strong>{{ auth()->user()->username }}</strong>
+                            <strong>{{ auth()->user()?->username }}</strong>
                             <p>${content}</p>
                         </div>
                         <hr>
