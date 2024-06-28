@@ -8,7 +8,7 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
-Route::post('/article/{id}/like', [ArticleController::class, 'like'])->name('article.like');
-Route::post('/article/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/articles/{id}/like', [ArticleController::class, 'like'])->name('article.like')->middleware('auth');
+Route::post('/article/{id}/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
 Auth::routes();

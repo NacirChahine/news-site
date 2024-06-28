@@ -8,7 +8,7 @@
                 <img src="{{ $article->image }}" alt="{{ $article->title }}" class="img-fluid">
                 <p>{{ $article->content }}</p>
                 <div>
-                    <button id="like-button" class="btn btn-primary" @if($userHasLiked) disabled @endif>Like</button>
+                    <button id="like-button" class="btn btn-primary" @auth @if($userHasLiked) disabled @endif @else disabled @endauth>Like</button>
                     <span id="like-count">{{ $likesCount }}</span> Likes
                 </div>
                 <div class="mt-3">

@@ -28,6 +28,10 @@ class ArticleController extends Controller
 
     public function like(Request $request, $id)
     {
+//        if (!auth()->check()) {
+//            return response()->json(['message' => 'Unauthorized', 'redirect' => route('login')], 401);
+//        }
+
         $article = Article::findOrFail($id);
 
         // Check if user has already liked
