@@ -75,12 +75,17 @@ The application will be accessible at http://127.0.0.1:8000.
 
 ## Homepage
 
+![screencapture home](https://github.com/NacirChahine/news-site/assets/120245923/2a30be52-034b-44f3-b368-adf182ed8123)
+
+
 The homepage lists all the news articles with two different displays:
 
 - A grid of 5 featured articles at the top using CSS Grid.
 - A news stream below using Flexbox.
 
 ## Article Page
+
+![screencapture article](https://github.com/NacirChahine/news-site/assets/120245923/7733b98a-d84c-4ee4-b055-ce132296ca0e)
 
 The article page includes:
 
